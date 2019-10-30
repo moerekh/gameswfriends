@@ -24,6 +24,12 @@ def create_app(test_config=None):
     except OSError:
         pass
 
+    try:
+        from devapikey import api_key
+        api_key = api_key
+    except:
+        api_key = 'NULLAPIKEY'
+
     # a simple page that says hello
     @app.route('/')
     def index():
