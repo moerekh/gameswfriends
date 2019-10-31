@@ -4,4 +4,10 @@
 {% endblock %}
 {% block content %}
     <h2>Using Steam's API.</h2>
+    <script>
+        $(function(){
+            var devapikey = "{{ foo.devapikey }}";
+            console.log(devapikey);    
+        });
+    </script>
 {% endblock content %}

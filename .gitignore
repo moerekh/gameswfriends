@@ -19,4 +19,4 @@ build/
 *.egg-info/
 
 #For Steam
-devapikey.py
+devapikey.json

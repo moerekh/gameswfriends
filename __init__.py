@@ -1,4 +1,5 @@
 import os
+import json
 
 from flask import Flask, render_template
 
@@ -24,15 +25,17 @@ def create_app(test_config=None):
     except OSError:
         pass
 
-    try:
-        from devapikey import api_key
-        api_key = api_key
-    except:
-        api_key = 'NULLAPIKEY'
+    DEVAPIKEY_FILENAME = 'devapikey.json'
+    THIS_FOLDER = os.path.dirname(os.path.abspath(__file__))
+    DEVAPIKEY = THIS_FOLDER + '/' + DEVAPIKEY_FILENAME
+    
+    with open(DEVAPIKEY) as j:
+        FOO = json.load(j)
+
 
     # a simple page that says hello
     @app.route('/')
     def index():
-        return render_template('/index/index.html')
+        return render_template('/index/index.html', foo = FOO)
 
     return app
