@@ -1,7 +1,8 @@
 import os
 import json
+import logging
 
-from flask import Flask, render_template
+from flask import Flask, render_template, request
 
 
 def create_app(test_config=None):
@@ -25,6 +26,7 @@ def create_app(test_config=None):
     except OSError:
         pass
 
+    # Get API KEY from file
     DEVAPIKEY_FILENAME = 'devapikey.json'
     THIS_FOLDER = os.path.dirname(os.path.abspath(__file__))
     DEVAPIKEY = THIS_FOLDER + '/' + DEVAPIKEY_FILENAME
@@ -36,6 +38,16 @@ def create_app(test_config=None):
     # a simple page that says hello
     @app.route('/')
     def index():
-        return render_template('/index/index.html', foo = FOO)
+        return render_template('/index/index.html')
 
+    @app.route('/user/')
+    def user_info(username):
+        import steamapi
+
+        username = request.
+        steamapi.core.APIConnection(api_key=FOO['devapikey'], validate_key=True)  # <-- Insert API key here
+        foo = steamapi.user.SteamUser(userurl=username)
+
+        return render_template('/index/user.html', foo = foo.owned_games)
+        
     return app

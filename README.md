@@ -16,4 +16,4 @@ This app uses:
     - Node.js
     - Twitter Bootstrap 4
     - JQuery
-
+    - pyoidc (Smiley's Steam API for Python - Unofficial)

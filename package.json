@@ -14,16 +14,16 @@
   "devDependencies": {},
   "scripts": {
     "build-css": "node-sass --include-path scss static/src/css/main.scss static/dist/css/main.css",
-    "watch-css": "nodemon -e scss -x \"npm run build-css\""    
+    "watch-css": "nodemon -e scss -x \"npm run build-css\""
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/moerekh/my_practice.git"
+    "url": "git+https://github.com/moerekh/gameswfriends.git"
   },
   "author": "moerekh",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/moerekh/my_practice/issues"
+    "url": "https://github.com/moerekh/gameswfriends/issues"
   },
-  "homepage": "https://github.com/moerekh/my_practice#readme"
+  "homepage": "https://github.com/moerekh/gameswfriends#readme"
 }
