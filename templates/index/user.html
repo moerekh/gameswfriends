@@ -1,19 +1,14 @@
 {% extends '_foundation.html' %}
 {% block header %}
-    <h1>Games w Friends!</h1>
+    <h1>USER PAGE</h1>
 {% endblock %}
 {% block content %}
     <h2>Using Steam's API.</h2>
 
-    <form action="user/" method="GET">
-        <label for="username"></label>
-        <input type="text" name="username">
-        <button type="submit">Find</button>
-    </form>
-    {{ foo }}
-    <script>
-        $(function(){
-            
-        });
-    </script>
+    <ul>
+        {% for game in data.games %}
+            <li>{{ game }}</li>
+        {% endfor %}
+    </ul>
+
 {% endblock content %}

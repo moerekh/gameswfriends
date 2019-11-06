@@ -32,22 +32,31 @@ def create_app(test_config=None):
     DEVAPIKEY = THIS_FOLDER + '/' + DEVAPIKEY_FILENAME
     
     with open(DEVAPIKEY) as j:
-        FOO = json.load(j)
+        STEAM_API_KEY = json.load(j)
 
 
     # a simple page that says hello
     @app.route('/')
     def index():
+
         return render_template('/index/index.html')
 
-    @app.route('/user/')
-    def user_info(username):
+    @app.route('/user/<username>', methods = ['GET', 'POST'])
+    def user_info(username = ''):
         import steamapi
+        steamapi.core.APIConnection(api_key=STEAM_API_KEY['devapikey'], validate_key=True)  # <-- Insert API key here
 
-        username = request.
-        steamapi.core.APIConnection(api_key=FOO['devapikey'], validate_key=True)  # <-- Insert API key here
-        foo = steamapi.user.SteamUser(userurl=username)
+        if request.method == 'GET':
+            steamuser = username
+        if request.method == 'POST':    
+            steamuser = request.values['username']
 
-        return render_template('/index/user.html', foo = foo.owned_games)
+        data = {
+                'games': steamapi.user.SteamUser(userurl=steamuser).owned_games,
+                'country_code': steamapi.user.SteamUser(userurl=steamuser).country_code,
+                'avatar': steamapi.user.SteamUser(userurl=steamuser).avatar
+            }
+
+        return render_template('/index/user.html', data = data)
         
     return app
